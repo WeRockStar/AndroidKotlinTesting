@@ -13,12 +13,16 @@ import javax.inject.Singleton
 @Module
 class HttpModule {
 
-    @Provides @Singleton fun provideOkHttp(): OkHttpClient {
+    @Provides
+    @Singleton
+    fun provideOkHttp(): OkHttpClient {
         return OkHttpClient.Builder()
                 .build()
     }
 
-    @Provides @Singleton fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    @Provides
+    @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(App.BASE_URL)
                 .client(okHttpClient)
@@ -28,7 +32,8 @@ class HttpModule {
     }
 
     @Provides
-    @Singleton fun provideAppAPI(retrofit: Retrofit): AppAPI {
+    @Singleton
+    fun provideAppAPI(retrofit: Retrofit): AppAPI {
         return retrofit.create(AppAPI::class.java)
     }
 }
